@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#3176FF',secondary:'#8A2BE2'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+body, html {
+    font-family: 'Inter', sans-serif;
+    background-color: #0a0a1a;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    perspective: 1000px;
+}
+.hero-section {
+    background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=1471&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.content-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    background-color: rgba(10, 10, 26, 0.7);
+    overflow: hidden;
+}
+
+/* Full screen left to right movement */
+@keyframes fullScreenMovement {
+    0% {
+        transform: translateX(-100vw) translateY(-50%) translateZ(-100px);
+        opacity: 0.3;
+        filter: brightness(0.2) drop-shadow(0 0 3px rgba(255, 255, 255, 0.2));
+    }
+    50% {
+        opacity: 0.7;
+        filter: brightness(0.5) drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+    }
+    100% {
+        transform: translateX(100vw) translateY(-50%) translateZ(-100px);
+        opacity: 0.3;
+        filter: brightness(0.2) drop-shadow(0 0 3px rgba(255, 255, 255, 0.2));
+    }
+}
+
+.lightning-logo {
+    animation: fullScreenMovement 20s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    z-index: 7;
+    transform-style: preserve-3d;
+}
+
+/* Earth Orbit Animation */
+@keyframes orbit {
+    0% {
+        transform: rotate(0deg) translateX(200px) rotate(0deg) translateZ(-50px);
+    }
+    100% {
+        transform: rotate(360deg) translateX(200px) rotate(-360deg) translateZ(-50px);
+    }
+}
+
+.earth {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-image: url('https://www.pngmart.com/files/22/Earth-PNG-Transparent.png');
+    background-size: cover;
+    animation: orbit 15s linear infinite;
+    z-index: 9;
+    box-shadow: 0 0 15px rgba(65, 105, 225, 0.5);
+    transform-style: preserve-3d;
+}
+
+.orbit-path {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 8;
+}
+
+.cosmic-scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform-style: preserve-3d;
+}
+
+/* Footer styling */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0;
+    background-color: rgba(10, 10, 26, 0.9);
+    z-index: 25;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.developer-credit {
+    color: #8A2BE2;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    text-shadow: 0 0 5px rgba(138, 43, 226, 0.7);
+}
+
+.developer-credit a {
+    color: #3176FF;
+    margin-left: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px rgba(49, 118, 255, 0.7);
+}
+
+.developer-credit a:hover {
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="fixed w-full z-50 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex items-center">
+                <div class="flex-shrink-0">
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                   
+                </div>
+            </div>
+            <div class="md:hidden flex items-center">
+                <button class="text-white w-10 h-10 flex items-center justify-center">
+                    <i class="ri-menu-line ri-lg"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section with 3D Effects -->
+<section class="hero-section">
+    <div class="content-container">
+        <div class="cosmic-scene">
+            <div class="orbit-path"></div>
+            <div class="earth">
+                <div class="moon"></div>
+            </div>
+            <div class="lightning-logo">
+                <img src="https://static.readdy.ai/image/bc4aa4d3654562b42de4c5f8d0658be6/cb2d3d78c6145af663ca83d98e33ecbc.jpeg" 
+                     alt="Cosmic Guide Logo" 
+                     class="w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer with centered developer credit -->
+<footer>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="footer-content">
+            <div class="developer-credit">
+                <p class="text-secondary">Developed by:</p>
+                <a href="https://ramrajabastakoti.com.np" target="_blank" class="text-primary hover:text-white transition duration-300">Ramraja</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
