@@ -3,212 +3,2007 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astrology Association</title>
+<link rel="icon" type="image/jpeg" href="https://static.readdy.ai/image/cd98293c0f503a46761cd65b2ae2e7a3/3025359e792447124a301f36a0fb0e7e.jpeg">
 <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-<script>tailwind.config={theme:{extend:{colors:{primary:'#3176FF',secondary:'#8A2BE2'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#8E6FF7',secondary:''},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
 <style>
-body, html {
-    font-family: 'Inter', sans-serif;
-    background-color: #0a0a1a;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    perspective: 1000px;
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+scroll-behavior: smooth;
 }
-.hero-section {
-    background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=1471&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.starry-bg {
+background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+position: relative;
+overflow: hidden;
 }
-.content-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 20;
-    background-color: rgba(10, 10, 26, 0.7);
-    overflow: hidden;
+.starry-bg::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-image: url('https://readdy.ai/api/search-image?query=a%20beautiful%20cosmic%20space%20background%20with%20stars%2C%20nebulas%2C%20and%20galaxies%2C%20with%20subtle%20purple%20hues%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20mystical%20and%20magical%20atmosphere%20perfect%20for%20an%20astrology%20website%2C%20the%20left%20side%20should%20be%20darker%20and%20gradually%20transition%20to%20lighter%20on%20the%20right%20to%20ensure%20text%20readability&width=1920&height=1080&seq=1&orientation=landscape');
+background-size: cover;
+background-position: center;
+opacity: 0.8;
+z-index: 0;
 }
-
-/* Full screen left to right movement */
-@keyframes fullScreenMovement {
-    0% {
-        transform: translateX(-100vw) translateY(-50%) translateZ(-100px);
-        opacity: 0.3;
-        filter: brightness(0.2) drop-shadow(0 0 3px rgba(255, 255, 255, 0.2));
-    }
-    50% {
-        opacity: 0.7;
-        filter: brightness(0.5) drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
-    }
-    100% {
-        transform: translateX(100vw) translateY(-50%) translateZ(-100px);
-        opacity: 0.3;
-        filter: brightness(0.2) drop-shadow(0 0 3px rgba(255, 255, 255, 0.2));
-    }
+.nav-link {
+position: relative;
+transition: all 0.3s ease;
 }
-
-.lightning-logo {
-    animation: fullScreenMovement 20s linear infinite;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    border: 4px solid rgba(255, 255, 255, 0.1);
-    overflow: hidden;
-    z-index: 7;
-    transform-style: preserve-3d;
+.nav-link::after {
+content: '';
+position: absolute;
+width: 0;
+height: 2px;
+bottom: -4px;
+left: 50%;
+background-color: #8E6FF7;
+transition: all 0.3s ease;
+transform: translateX(-50%);
 }
-
-/* Earth Orbit Animation */
-@keyframes orbit {
-    0% {
-        transform: rotate(0deg) translateX(200px) rotate(0deg) translateZ(-50px);
-    }
-    100% {
-        transform: rotate(360deg) translateX(200px) rotate(-360deg) translateZ(-50px);
-    }
+.nav-link:hover::after, .nav-link.active::after {
+width: 100%;
 }
-
-.earth {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-image: url('https://www.pngmart.com/files/22/Earth-PNG-Transparent.png');
-    background-size: cover;
-    animation: orbit 15s linear infinite;
-    z-index: 9;
-    box-shadow: 0 0 15px rgba(65, 105, 225, 0.5);
-    transform-style: preserve-3d;
+.nav-link:hover, .nav-link.active {
+color: #8E6FF7;
 }
-
-.orbit-path {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    height: 400px;
-    border: 1px dashed rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 8;
+.btn-hover {
+transition: all 0.3s ease;
+transform: translateY(0);
 }
-
-.cosmic-scene {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    transform-style: preserve-3d;
+.btn-hover:hover {
+transform: translateY(-3px);
+box-shadow: 0 10px 15px -3px rgba(142, 111, 247, 0.3);
 }
-
-/* Footer styling */
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    padding: 20px 0;
-    background-color: rgba(10, 10, 26, 0.9);
-    z-index: 25;
+.fade-in {
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.8s ease, transform 0.8s ease;
 }
-
-.footer-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.fade-in.visible {
+opacity: 1;
+transform: translateY(0);
 }
-
-.developer-credit {
-    color: #8A2BE2;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    text-shadow: 0 0 5px rgba(138, 43, 226, 0.7);
+.zoom-hover {
+transition: transform 0.3s ease;
 }
-
-.developer-credit a {
-    color: #3176FF;
-    margin-left: 5px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    text-shadow: 0 0 5px rgba(49, 118, 255, 0.7);
+.zoom-hover:hover {
+transform: scale(1.05);
 }
-
-.developer-credit a:hover {
-    color: white;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+input:focus, textarea:focus {
+outline: none;
+border-color: #8E6FF7;
+}
+.custom-checkbox {
+appearance: none;
+width: 20px;
+height: 20px;
+border: 2px solid #8E6FF7;
+border-radius: 4px;
+position: relative;
+cursor: pointer;
+}
+.custom-checkbox:checked {
+background-color: #8E6FF7;
+}
+.custom-checkbox:checked::after {
+content: '';
+position: absolute;
+top: 3px;
+left: 6px;
+width: 6px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.custom-radio {
+appearance: none;
+width: 20px;
+height: 20px;
+border: 2px solid #8E6FF7;
+border-radius: 50%;
+position: relative;
+cursor: pointer;
+}
+.custom-radio:checked::after {
+content: '';
+position: absolute;
+top: 3px;
+left: 3px;
+width: 10px;
+height: 10px;
+border-radius: 50%;
+background-color: #8E6FF7;
+}
+.toggle-switch {
+position: relative;
+display: inline-block;
+width: 48px;
+height: 24px;
+}
+.toggle-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.toggle-slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+transition: .4s;
+border-radius: 24px;
+}
+.toggle-slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .toggle-slider {
+background-color: #8E6FF7;
+}
+input:checked + .toggle-slider:before {
+transform: translateX(24px);
+}
+.lightning-text {
+position: relative;
+color: #fff;
+text-shadow: 0 0 10px #8E6FF7, 0 0 20px #8E6FF7, 0 0 30px #8E6FF7;
+animation: lightning 2s infinite;
+}
+@keyframes lightning {
+0%, 100% {
+text-shadow: 0 0 10px #8E6FF7, 0 0 20px #8E6FF7, 0 0 30px #8E6FF7;
+}
+50% {
+text-shadow: 0 0 20px #8E6FF7, 0 0 30px #8E6FF7, 0 0 40px #8E6FF7, 0 0 50px #8E6FF7;
+}
+}
+.gallery-modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.9);
+z-index: 1000;
+justify-content: center;
+align-items: center;
+}
+.modal-content {
+max-width: 80%;
+max-height: 80%;
+}
+.modal-nav {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+font-size: 3rem;
+color: white;
+cursor: pointer;
+z-index: 1001;
+}
+.modal-prev {
+left: 20px;
+}
+.modal-next {
+right: 20px;
+}
+.modal-close {
+position: absolute;
+top: 20px;
+right: 20px;
+font-size: 2rem;
+color: white;
+cursor: pointer;
+z-index: 1001;
 }
 </style>
 </head>
 <body>
-
 <!-- Navigation -->
-<nav class="fixed w-full z-50 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-            <div class="flex items-center">
-                <div class="flex-shrink-0">
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                   
-                </div>
-            </div>
-            <div class="md:hidden flex items-center">
-                <button class="text-white w-10 h-10 flex items-center justify-center">
-                    <i class="ri-menu-line ri-lg"></i>
-                </button>
-            </div>
-        </div>
-    </div>
+<nav class="fixed top-0 left-0 w-full bg-white bg-opacity-98 shadow-md z-50 px-4 md:px-8">
+<div class="max-w-7xl mx-auto flex justify-between items-center py-4">
+<a href="#" class="flex items-center">
+<img src="https://static.readdy.ai/image/cd98293c0f503a46761cd65b2ae2e7a3/3025359e792447124a301f36a0fb0e7e.jpeg" alt="Astrology Association Logo" class="h-11.5 w-11">
+<span class=" text-2xl md:text-center-2xl font-bold text-blue-600 mb-2 ">&nbsp;&nbsp;&nbsp; नेपाल कृष्णमूर्ति ज्योतिष परिषद्</span>
+
+</a>
+<div class="hidden md:flex space-x-8">
+<a href="#home" class="nav-link font-medium text-gray-800 active">Home</a>
+<a href="#about" class="nav-link font-medium text-gray-800">About</a>
+<a href="#members" class="nav-link font-medium text-gray-800">Members</a>
+<a href="#gallery" class="nav-link font-medium text-gray-800">Gallery</a>
+<a href="#join" class="nav-link font-medium text-gray-800">Join Class</a>
+<a href="#contact" class="nav-link font-medium text-gray-800">Contact</a>
+</div>
+<div class="flex items-center space-x-4">
+<div class="flex items-center">
+<span class="mr-2 text-sm text-gray-600">Light</span>
+<label class="toggle-switch">
+<input type="checkbox" id="themeToggle">
+<span class="toggle-slider"></span>
+</label>
+<span class="ml-2 text-sm text-gray-600">Dark</span>
+</div>
+<div class="md:hidden w-10 h-10 flex items-center justify-center" id="mobileMenuBtn">
+<i class="ri-menu-line ri-lg"></i>
+</div>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div class="md:hidden hidden bg-white w-full py-4 px-4" id="mobileMenu">
+<div class="flex flex-col space-y-4">
+<a href="#home" class="nav-link font-medium text-gray-800 active">Home</a>
+<a href="#about" class="nav-link font-medium text-gray-800">About</a>
+<a href="#members" class="nav-link font-medium text-gray-800">Members</a>
+<a href="#gallery" class="nav-link font-medium text-gray-800">Gallery</a>
+<a href="#join" class="nav-link font-medium text-gray-800">Join Class</a>
+<a href="#contact" class="nav-link font-medium text-gray-800">Contact</a>
+</div>
+</div>
 </nav>
-
-<!-- Hero Section with 3D Effects -->
-<section class="hero-section">
-    <div class="content-container">
-        <div class="cosmic-scene">
-            <div class="orbit-path"></div>
-            <div class="earth">
-                <div class="moon"></div>
-            </div>
-            <div class="lightning-logo">
-                <img src="https://static.readdy.ai/image/bc4aa4d3654562b42de4c5f8d0658be6/cb2d3d78c6145af663ca83d98e33ecbc.jpeg" 
-                     alt="Cosmic Guide Logo" 
-                     class="w-full h-full object-cover">
-            </div>
-        </div>
-    </div>
+<!-- Home Section -->
+<section id="home" class="pt-24 md:pt-0">
+<!-- Hero Section -->
+<div class="starry-bg min-h-screen flex items-center">
+<div class="container mx-auto px-4 md:px-8 relative z-10">
+<div class="max-w-3xl text-white fade-in visible">
+<h1 class="text-4xl md:text-6xl font-bold mb-6">Discover Your Cosmic Path</h1>
+<p class="text-xl md:text-2xl mb-8 opacity-90">Unlock the secrets of the stars and navigate life's journey with our expert astrological guidance.</p>
+<div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+</div>
+</div>
+</div>
+</div>
+<!-- Welcome Section -->
+<div class="py-20 bg-white">
+<div class="container mx-auto px-4 md:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16 fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-6">Welcome to Our Astrology Association</h2>
+<p class="text-gray-700 text-lg">Founded in 2010, our association brings together the finest astrological minds to help you understand the cosmic forces that shape your life. Whether you're a beginner or an experienced practitioner, our community offers knowledge, guidance, and connection.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-gradient-to-br from-[#F0E7FF] to-[#E7EEFF] p-8 rounded-lg shadow-lg fade-in zoom-hover">
+<div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 mx-auto">
+<i class="ri-star-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-4 text-center text-gray-800">Personal Readings</h3>
+<p class="text-gray-700 text-center">Get personalized insights into your cosmic blueprint with our expert astrologers.</p>
+</div>
+<div class="bg-gradient-to-br from-[#FFE7F0] to-[#FFF3E7] p-8 rounded-lg shadow-lg fade-in zoom-hover">
+<div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 mx-auto">
+<i class="ri-book-open-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-4 text-center text-gray-800">Educational Classes</h3>
+<p class="text-gray-700 text-center">Learn the ancient art of astrology through our comprehensive courses for all levels.</p>
+</div>
+<div class="bg-gradient-to-br from-[#E7FFF0] to-[#E7FFFF] p-8 rounded-lg shadow-lg fade-in zoom-hover">
+<div class="w-16 h-16 bg-primary bg-opacity-20 rounded-full flex items-center justify-center mb-6 mx-auto">
+<i class="ri-group-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold mb-4 text-center text-gray-800">Community Events</h3>
+<p class="text-gray-700 text-center">Connect with like-minded individuals at our regular meetups, workshops, and celestial celebrations.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Testimonials Section -->
+<div class="py-20 bg-gray-50">
+<div class="container mx-auto px-4 md:px-8">
+<div class="text-center max-w-3xl mx-auto mb-16 fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-6">What Our Members Say</h2>
+<p class="text-gray-700 text-lg">Hear from those who have discovered the power of astrology through our association.</p>
+</div>
+<div class="relative overflow-hidden">
+<div class="flex transition-transform duration-500 ease-in-out" id="testimonialSlider">
+<!-- Original testimonials -->
+<div class="min-w-full md:min-w-[33.333%] p-4">
+<div class="bg-gradient-to-br from-rose-50 to-rose-100 p-8 rounded-lg shadow-lg fade-in">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20middle-aged%20woman%20with%20short%20blonde%20hair%20and%20a%20warm%20smile%2C%20business%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=2&orientation=squarish" alt="Emily Richardson" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Parbati Bhandari</h4>
+<p class="text-gray-600 text-sm">Member since 2024</p>
+</div>
+</div>
+<p class="text-gray-700">"Joining this association changed my perspective on life. The insights I've gained through their readings have guided me through major life decisions with confidence."</p>
+<div class="mt-4 flex">
+<i class="ri-star-fill text-rose-500"></i>
+<i class="ri-star-fill text-rose-500"></i>
+<i class="ri-star-fill text-rose-500"></i>
+<i class="ri-star-fill text-rose-500"></i>
+<i class="ri-star-fill text-rose-500"></i>
+</div>
+</div>
+</div>
+<div class="min-w-full md:min-w-[33.333%] p-4">
+<div class="bg-gradient-to-br from-sky-50 to-sky-100 p-8 rounded-lg shadow-lg fade-in">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+<img src="https://media-hosting.imagekit.io/9ee0ddd3401240f5/WhatsApp%20Image%202025-04-11%20at%2018.46.44.jpeg?Expires=1838984589&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=UvEWstEo65jsyAd8u1xvlNhzO-cu-Y~QQdLZg1QzMpEsXjNQirqnP~oN9JLLLiB-LX8gKzwWODhnKN7sVN0p8ieMTcjuV2OmpeCqJ7JB2pzWOaiM3KyVYBF057lmgJIFxgjaW~2BTBApGx72mPSTnRUedP6X6bPUyBjiDsrb8Kjg6eL~C0p9TVTDQ21MFjtKsiDbS3~ArxY9RQd14DgZD~dc-a25OgOJ4m6rVy44Qwj4WGFP5jWyhwgEzOHxlWnPBL3xlZVm2~~Z19K7qKbXKWoovlIX33q-pwX-BbMpwt9R-Dj1OhsVYZW3YCj9QSl9W7xyF2XVLsqj9cCqjEHUJA__" alt="David Chen" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Ramraja Bastakoti</h4>
+<p class="text-gray-600 text-sm">Member since 2024</p>
+</div>
+</div>
+<p class="text-gray-700">"The educational classes are exceptional. I went from knowing nothing about astrology to being able to read and interpret birth charts with confidence in just a few months."</p>
+<div class="mt-4 flex">
+<i class="ri-star-fill text-sky-500"></i>
+<i class="ri-star-fill text-sky-500"></i>
+<i class="ri-star-fill text-sky-500"></i>
+<i class="ri-star-fill text-sky-500"></i>
+<i class="ri-star-half-fill text-sky-500"></i>
+</div>
+</div>
+</div>
+<div class="min-w-full md:min-w-[33.333%] p-4">
+<div class="bg-gradient-to-br from-amber-50 to-amber-100 p-8 rounded-lg shadow-lg fade-in">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20middle-aged%20Black%20woman%20with%20natural%20hair%20and%20a%20professional%20smile%2C%20business%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=4&orientation=squarish" alt="Sophia Williams" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Kanchan Sitaula</h4>
+<p class="text-gray-600 text-sm">Member since 2024</p>
+</div>
+</div>
+<p class="text-gray-700">"The community events have connected me with lifelong friends who share my passion for astrology. The network I've built here has been invaluable both personally and professionally."</p>
+<div class="mt-4 flex">
+<i class="ri-star-fill text-amber-500"></i>
+<i class="ri-star-fill text-amber-500"></i>
+<i class="ri-star-fill text-amber-500"></i>
+<i class="ri-star-fill text-amber-500"></i>
+<i class="ri-star-fill text-amber-500"></i>
+</div>
+</div>
+</div>
+<!-- Additional testimonials -->
+<div class="min-w-full md:min-w-[33.333%] p-4">
+<div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-8 rounded-lg shadow-lg fade-in">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20young%20Indian%20woman%20with%20long%20dark%20hair%20and%20a%20confident%20smile%2C%20casual%20professional%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=45&orientation=squarish" alt="Priya Sharma" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Gita Paudel</h4>
+<p class="text-gray-600 text-sm">Member since 2022</p>
+</div>
+</div>
+<p class="text-gray-700">"The personalized birth chart analysis opened my eyes to patterns in my life I had never noticed before. It's been transformative for my personal growth journey."</p>
+<div class="mt-4 flex">
+<i class="ri-star-fill text-emerald-500"></i>
+<i class="ri-star-fill text-emerald-500"></i>
+<i class="ri-star-fill text-emerald-500"></i>
+<i class="ri-star-fill text-emerald-500"></i>
+<i class="ri-star-fill text-emerald-500"></i>
+</div>
+</div>
+</div>
+<div class="min-w-full md:min-w-[33.333%] p-4">
+<div class="bg-gradient-to-br from-violet-50 to-violet-100 p-8 rounded-lg shadow-lg fade-in">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20middle-aged%20European%20man%20with%20salt%20and%20pepper%20hair%20and%20glasses%2C%20professional%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=46&orientation=squarish" alt="Marcus Weber" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Bamadev Deep Adhikari</h4>
+<p class="text-gray-600 text-sm">Member since 2024</p>
+</div>
+</div>
+<p class="text-gray-700">"As a skeptic turned believer, I can attest to the scientific approach this association takes to astrology. Their research-based methods have shown me the true depth of this ancient practice."</p>
+<div class="mt-4 flex">
+<i class="ri-star-fill text-violet-500"></i>
+<i class="ri-star-fill text-violet-500"></i>
+<i class="ri-star-fill text-violet-500"></i>
+<i class="ri-star-fill text-violet-500"></i>
+<i class="ri-star-half-fill text-violet-500"></i>
+</div>
+</div>
+</div>
+<div class="min-w-full md:min-w-[33.333%] p-4">
+<div class="bg-gradient-to-br from-fuchsia-50 to-fuchsia-100 p-8 rounded-lg shadow-lg fade-in">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20young%20Latino%20woman%20with%20curly%20hair%20and%20a%20bright%20smile%2C%20business%20casual%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=47&orientation=squarish" alt="Isabella Martinez" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">laxmi Dhungana</h4>
+<p class="text-gray-600 text-sm">Member since 2023</p>
+</div>
+</div>
+<p class="text-gray-700">"The monthly workshops have become a highlight of my calendar. Each session brings new insights and the instructors make complex concepts accessible and engaging."</p>
+<div class="mt-4 flex">
+<i class="ri-star-fill text-fuchsia-500"></i>
+<i class="ri-star-fill text-fuchsia-500"></i>
+<i class="ri-star-fill text-fuchsia-500"></i>
+<i class="ri-star-fill text-fuchsia-500"></i>
+<i class="ri-star-fill text-fuchsia-500"></i>
+</div>
+</div>
+</div>
+<div class="min-w-full md:min-w-[33.333%] p-4">
+<div class="bg-gradient-to-br from-cyan-50 to-cyan-100 p-8 rounded-lg shadow-lg fade-in">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20an%20older%20Japanese%20man%20with%20a%20distinguished%20appearance%20and%20gentle%20smile%2C%20traditional%20professional%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=48&orientation=squarish" alt="Hiroshi Tanaka" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Suraj Shakya</h4>
+<p class="text-gray-600 text-sm">Member since 2024</p>
+</div>
+</div>
+<p class="text-gray-700">"The blend of Eastern and Western astrological traditions here is remarkable. It's enriched my understanding of both systems and improved my practice significantly."</p>
+<div class="mt-4 flex">
+<i class="ri-star-fill text-cyan-500"></i>
+<i class="ri-star-fill text-cyan-500"></i>
+<i class="ri-star-fill text-cyan-500"></i>
+<i class="ri-star-fill text-cyan-500"></i>
+<i class="ri-star-fill text-cyan-500"></i>
+</div>
+</div>
+</div>
+<div class="min-w-full md:min-w-[33.333%] p-4">
+<div class="bg-gradient-to-br from-teal-50 to-teal-100 p-8 rounded-lg shadow-lg fade-in">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20middle-aged%20African%20woman%20with%20elegant%20braids%20and%20a%20warm%20smile%2C%20professional%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=49&orientation=squarish" alt="Grace Okonjo" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Muna Adhikari</h4>
+<p class="text-gray-600 text-sm">Member since 2024</p>
+</div>
+</div>
+<p class="text-gray-700">"The career guidance based on my astrological chart was spot-on. It helped me make a pivotal career change that aligned perfectly with my true calling."</p>
+<div class="mt-4 flex">
+<i class="ri-star-fill text-teal-500"></i>
+<i class="ri-star-fill text-teal-500"></i>
+<i class="ri-star-fill text-teal-500"></i>
+<i class="ri-star-fill text-teal-500"></i>
+<i class="ri-star-fill text-teal-500"></i>
+</div>
+</div>
+</div>
+<div class="min-w-full md:min-w-[33.333%] p-4">
+<div class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-8 rounded-lg shadow-lg fade-in">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20young%20Middle%20Eastern%20man%20with%20a%20well-groomed%20beard%20and%20friendly%20expression%2C%20business%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=50&orientation=squarish" alt="Karim Hadad" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Thapakaji Prabhu</h4>
+<p class="text-gray-600 text-sm">Member since 2024</p>
+</div>
+</div>
+<p class="text-gray-700">"The online resources and community forums have been invaluable during my astrological studies. The support from fellow members and mentors is unmatched."</p>
+<div class="mt-4 flex">
+<i class="ri-star-fill text-indigo-500"></i>
+<i class="ri-star-fill text-indigo-500"></i>
+<i class="ri-star-fill text-indigo-500"></i>
+<i class="ri-star-fill text-indigo-500"></i>
+<i class="ri-star-half-fill text-indigo-500"></i>
+</div>
+</div>
+</div>
+<div class="min-w-full md:min-w-[33.333%] p-4">
+<div class="bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-lg shadow-lg fade-in">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20middle-aged%20Australian%20woman%20with%20short%20red%20hair%20and%20a%20confident%20smile%2C%20casual%20professional%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=51&orientation=squarish" alt="Sarah O'Connor" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Manisha Shrestha</h4>
+<p class="text-gray-600 text-sm">Member since 2024</p>
+</div>
+</div>
+<p class="text-gray-700">"The annual retreats have been life-changing experiences. The combination of intensive learning and spiritual connection with like-minded individuals is powerful."</p>
+<div class="mt-4 flex">
+<i class="ri-star-fill text-orange-500"></i>
+<i class="ri-star-fill text-orange-500"></i>
+<i class="ri-star-fill text-orange-500"></i>
+<i class="ri-star-fill text-orange-500"></i>
+<i class="ri-star-fill text-orange-500"></i>
+</div>
+</div>
+</div>
+<div class="min-w-full md:min-w-[33.333%] p-4">
+<div class="bg-gradient-to-br from-lime-50 to-lime-100 p-8 rounded-lg shadow-lg fade-in">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20young%20Brazilian%20man%20with%20curly%20hair%20and%20an%20enthusiastic%20smile%2C%20business%20casual%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=52&orientation=squarish" alt="Rafael Santos" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Harikrishna Shrestha</h4>
+<p class="text-gray-600 text-sm">Member since 2024</p>
+</div>
+</div>
+<p class="text-gray-700">"The specialized courses in financial astrology have given me a unique perspective on market trends. It's become an invaluable tool in my investment strategy."</p>
+<div class="mt-4 flex">
+<i class="ri-star-fill text-lime-500"></i>
+<i class="ri-star-fill text-lime-500"></i>
+<i class="ri-star-fill text-lime-500"></i>
+<i class="ri-star-fill text-lime-500"></i>
+<i class="ri-star-fill text-lime-500"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center mt-8 space-x-2">
+<button id="prevTestimonial" class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center">
+<i class="ri-arrow-left-s-line ri-lg"></i>
+</button>
+<button id="nextTestimonial" class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center">
+<i class="ri-arrow-right-s-line ri-lg"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Newsletter Section -->
+<div class="py-20 bg-primary bg-opacity-5">
+<div class="container mx-auto px-4 md:px-8">
+<div class="max-w-3xl mx-auto text-center fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-6">Stay Connected with the Cosmos</h2>
+<p class="text-gray-700 text-lg mb-8">Subscribe to our newsletter for monthly horoscopes, celestial event notifications, and exclusive content.</p>
+<form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+<input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:border-primary">
+<button type="submit" class="bg-primary text-white px-6 py-3 !rounded-button font-medium btn-hover whitespace-nowrap">Subscribe</button>
+</form>
+</div>
+</div>
+</div>
 </section>
-
-<!-- Footer with centered developer credit -->
-<footer>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="footer-content">
-            <div class="developer-credit">
-                <p class="text-secondary">Developed by:</p>
-                <a href="https://ramrajabastakoti.com.np" target="_blank" class="text-primary hover:text-white transition duration-300">Ramraja</a>
-            </div>
-        </div>
-    </div>
+<!-- About Section -->
+<section id="about" class="pt-24">
+<div class="container mx-auto px-4 md:px-8 py-20">
+<div class="text-center max-w-3xl mx-auto mb-16 fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-6">About Our Association</h2>
+<p class="text-gray-700 text-lg">Dedicated to the study, practice, and advancement of astrological knowledge since 2010.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+<div class="fade-in">
+<h3 class="text-2xl font-bold mb-6">Our Mission</h3>
+<p class="text-gray-700 mb-6">We are committed to preserving and advancing the ancient wisdom of astrology while making it accessible to the modern world. Our mission is to provide accurate astrological guidance, comprehensive education, and a supportive community for both practitioners and seekers.</p>
+<p class="text-gray-700">We believe that astrology is a powerful tool for self-discovery, personal growth, and navigating life's challenges. By understanding the cosmic influences that shape our lives, we can make more informed choices and live more authentically.</p>
+</div>
+<div class="fade-in">
+<img src="https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20an%20astrology-themed%20workspace%20with%20star%20charts%2C%20celestial%20maps%2C%20crystals%2C%20and%20telescopes%20arranged%20on%20a%20desk%2C%20with%20soft%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20mystical%20and%20professional%20atmosphere&width=600&height=400&seq=5&orientation=landscape" alt="Our Mission" class="rounded-lg shadow-lg w-full h-auto">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+<div class="order-2 md:order-1 fade-in">
+<img src="https://readdy.ai/api/search-image?query=a%20historical%20timeline%20of%20astrology%20showing%20ancient%20star%20charts%2C%20zodiac%20symbols%2C%20and%20astronomical%20instruments%20through%20different%20time%20periods%2C%20with%20subtle%20purple%20accents%20matching%20the%20primary%20color%20%25238E6FF7%2C%20displayed%20in%20a%20museum-like%20setting&width=600&height=400&seq=6&orientation=landscape" alt="Our History" class="rounded-lg shadow-lg w-full h-auto">
+</div>
+<div class="order-1 md:order-2 fade-in">
+<h3 class="text-2xl font-bold mb-6">Our History</h3>
+<p class="text-gray-700 mb-6">Founded in 2010 by a group of passionate astrologers, our association began as a small study group meeting in Butwal, Nepal. As interest grew, we expanded our offerings to include formal classes, professional readings, and community events.</p>
+<p class="text-gray-700">Over the years, we've grown to become one of the most respected astrological organizations in the region, known for our accuracy, integrity, and commitment to excellence. Today, we serve thousands of members worldwide while maintaining our roots in traditional astrological practices.</p>
+</div>
+</div>
+<div class="mb-20 fade-in">
+<h3 class="text-2xl font-bold mb-6 text-center">Our Core Values</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+<div class="text-center p-6 bg-gradient-to-br from-violet-50 to-violet-100 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+<div class="w-16 h-16 bg-violet-500 bg-opacity-10 rounded-full flex items-center justify-center mb-4 mx-auto">
+<i class="ri-scales-3-line ri-xl text-violet-600"></i>
+</div>
+<h4 class="font-semibold mb-2 text-violet-900">Integrity</h4>
+<p class="text-violet-700">We uphold the highest ethical standards in all our practices and teachings.</p>
+</div>
+<div class="text-center p-6 bg-gradient-to-br from-rose-50 to-rose-100 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+<div class="w-16 h-16 bg-rose-500 bg-opacity-10 rounded-full flex items-center justify-center mb-4 mx-auto">
+<i class="ri-book-read-line ri-xl text-rose-600"></i>
+</div>
+<h4 class="font-semibold mb-2 text-rose-900">Knowledge</h4>
+<p class="text-rose-700">We are dedicated to continuous learning and the pursuit of astrological wisdom.</p>
+</div>
+<div class="text-center p-6 bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+<div class="w-16 h-16 bg-cyan-500 bg-opacity-10 rounded-full flex items-center justify-center mb-4 mx-auto">
+<i class="ri-heart-line ri-xl text-cyan-600"></i>
+</div>
+<h4 class="font-semibold mb-2 text-cyan-900">Compassion</h4>
+<p class="text-cyan-700">We approach each reading and teaching with empathy and understanding.</p>
+</div>
+<div class="text-center p-6 bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+<div class="w-16 h-16 bg-amber-500 bg-opacity-10 rounded-full flex items-center justify-center mb-4 mx-auto">
+<i class="ri-community-line ri-xl text-amber-600"></i>
+</div>
+<h4 class="font-semibold mb-2 text-amber-900">Community</h4>
+<p class="text-amber-700">We foster a supportive environment where all are welcome to explore astrology.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Members Section -->
+<section id="members" class="pt-24 bg-gray-50">
+<div class="container mx-auto px-4 md:px-8 py-20">
+<div class="text-center max-w-3xl mx-auto mb-16 fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-6">Our Members</h2>
+<p class="text-gray-700 text-lg">Meet our diverse community of astrologers, practitioners, and enthusiasts from around the world.</p>
+</div>
+<div class="mb-12 fade-in">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-2xl font-bold">Executive Committee</h3>
+<div class="flex space-x-2">
+<button id="prevExec" class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center">
+<i class="ri-arrow-left-s-line ri-lg"></i>
+</button>
+<button id="nextExec" class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center">
+<i class="ri-arrow-right-s-line ri-lg"></i>
+</button>
+</div>
+</div>
+<div class="relative overflow-hidden" id="execCarousel">
+<div class="flex transition-transform duration-300 ease-in-out" id="execSlider">
+<!-- Executive Members -->
+<div class="min-w-[300px] sm:min-w-[350px] p-4">
+<div class="bg-white p-6 rounded-lg shadow-lg">
+<div class="flex items-center mb-4">
+<div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20distinguished%20older%20Indian%20man%20with%20gray%20hair%20and%20glasses%2C%20wearing%20traditional%20clothing%20with%20subtle%20purple%20accents%2C%20looking%20wise%20and%20scholarly%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=200&height=200&seq=10&orientation=squarish" alt="Dr. Rajesh Sharma" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Laxman Bhandari</h4>
+<p class="text-primary text-sm">President</p>
+</div>
+</div>
+<p class="text-gray-700 text-sm mb-4">Leading our association with wisdom and vision since its founding. Expert in Vedic astrology with over 40 years of experience.</p>
+<div class="flex items-center text-sm text-gray-600">
+<div class="flex items-center mr-4">
+<i class="ri-mail-line mr-1"></i>
+<span>rajesh@astro.org</span>
+</div>
+<div class="flex items-center">
+<i class="ri-phone-line mr-1"></i>
+<span>+977 98-1234-5678</span>
+</div>
+</div>
+</div>
+</div>
+<div class="min-w-[300px] sm:min-w-[350px] p-4">
+<div class="bg-white p-6 rounded-lg shadow-lg">
+<div class="flex items-center mb-4">
+<div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20middle-aged%20Nepalese%20woman%20with%20long%20dark%20hair%20and%20a%20serene%20expression%2C%20wearing%20elegant%20clothing%20with%20subtle%20purple%20accents%2C%20looking%20wise%20and%20compassionate%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=200&height=200&seq=11&orientation=squarish" alt="Maya Pradhan" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Maya Pradhan</h4>
+<p class="text-primary text-sm">Vice President</p>
+</div>
+</div>
+<p class="text-gray-700 text-sm mb-4">Specializes in relationship astrology and career guidance. Has conducted over 10,000 readings in her 25-year career.</p>
+<div class="flex items-center text-sm text-gray-600">
+<div class="flex items-center mr-4">
+<i class="ri-mail-line mr-1"></i>
+<span>maya@astro.org</span>
+</div>
+<div class="flex items-center">
+<i class="ri-phone-line mr-1"></i>
+<span>+977 98-2345-6789</span>
+</div>
+</div>
+</div>
+</div>
+<div class="min-w-[300px] sm:min-w-[350px] p-4">
+<div class="bg-white p-6 rounded-lg shadow-lg">
+<div class="flex items-center mb-4">
+<div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20middle-aged%20Nepalese%20man%20with%20a%20thoughtful%20expression%20and%20short%20dark%20hair%2C%20wearing%20professional%20clothing%20with%20subtle%20purple%20accents%2C%20looking%20intellectual%20and%20approachable%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=200&height=200&seq=12&orientation=squarish" alt="Anish Thapa" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Anish Thapa</h4>
+<p class="text-primary text-sm">Secretary</p>
+</div>
+</div>
+<p class="text-gray-700 text-sm mb-4">Manages our educational programs and certification process. Expert in astronomical calculations and planetary transits.</p>
+<div class="flex items-center text-sm text-gray-600">
+<div class="flex items-center mr-4">
+<i class="ri-mail-line mr-1"></i>
+<span>anish@astro.org</span>
+</div>
+<div class="flex items-center">
+<i class="ri-phone-line mr-1"></i>
+<span>+977 98-3456-7890</span>
+</div>
+</div>
+</div>
+</div>
+<div class="min-w-[300px] sm:min-w-[350px] p-4">
+<div class="bg-white p-6 rounded-lg shadow-lg">
+<div class="flex items-center mb-4">
+<div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20young%20Indian%20woman%20with%20glasses%20and%20a%20professional%20appearance%2C%20wearing%20business%20attire%20with%20subtle%20purple%20accents%2C%20looking%20intelligent%20and%20organized%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=200&height=200&seq=13&orientation=squarish" alt="Priya Joshi" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Priya Joshi</h4>
+<p class="text-primary text-sm">Treasurer</p>
+</div>
+</div>
+<p class="text-gray-700 text-sm mb-4">Manages our financial affairs and scholarship programs. Specializes in financial astrology and wealth forecasting.</p>
+<div class="flex items-center text-sm text-gray-600">
+<div class="flex items-center mr-4">
+<i class="ri-mail-line mr-1"></i>
+<span>priya@astro.org</span>
+</div>
+<div class="flex items-center">
+<i class="ri-phone-line mr-1"></i>
+<span>+977 98-4567-8901</span>
+</div>
+</div>
+</div>
+</div>
+<div class="min-w-[300px] sm:min-w-[350px] p-4">
+<div class="bg-white p-6 rounded-lg shadow-lg">
+<div class="flex items-center mb-4">
+<div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20middle-aged%20Nepalese%20man%20with%20a%20friendly%20smile%2C%20wearing%20casual%20professional%20clothing%20with%20subtle%20purple%20accents%2C%20looking%20approachable%20and%20knowledgeable%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=200&height=200&seq=14&orientation=squarish" alt="Bikram Gurung" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Bikram Gurung</h4>
+<p class="text-primary text-sm">Events Coordinator</p>
+</div>
+</div>
+<p class="text-gray-700 text-sm mb-4">Organizes our workshops, conferences, and celestial celebrations. Expert in electional astrology for timing events.</p>
+<div class="flex items-center text-sm text-gray-600">
+<div class="flex items-center mr-4">
+<i class="ri-mail-line mr-1"></i>
+<span>bikram@astro.org</span>
+</div>
+<div class="flex items-center">
+<i class="ri-phone-line mr-1"></i>
+<span>+977 98-5678-9012</span>
+</div>
+</div>
+</div>
+</div>
+<div class="min-w-[300px] sm:min-w-[350px] p-4">
+<div class="bg-white p-6 rounded-lg shadow-lg">
+<div class="flex items-center mb-4">
+<div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20young%20Nepalese%20woman%20with%20a%20creative%20appearance%2C%20wearing%20stylish%20clothing%20with%20subtle%20purple%20accents%2C%20looking%20artistic%20and%20innovative%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=200&height=200&seq=15&orientation=squarish" alt="Sita Karki" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Sita Karki</h4>
+<p class="text-primary text-sm">Communications Director</p>
+</div>
+</div>
+<p class="text-gray-700 text-sm mb-4">Manages our publications, website, and social media presence. Specializes in astrological journalism and content creation.</p>
+<div class="flex items-center text-sm text-gray-600">
+<div class="flex items-center mr-4">
+<i class="ri-mail-line mr-1"></i>
+<span>sita@astro.org</span>
+</div>
+<div class="flex items-center">
+<i class="ri-phone-line mr-1"></i>
+<span>+977 98-6789-0123</span>
+</div>
+</div>
+</div>
+</div>
+<div class="min-w-[300px] sm:min-w-[350px] p-4">
+<div class="bg-white p-6 rounded-lg shadow-lg">
+<div class="flex items-center mb-4">
+<div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20an%20older%20Nepalese%20man%20with%20white%20hair%20and%20a%20scholarly%20appearance%2C%20wearing%20traditional%20clothing%20with%20subtle%20purple%20accents%2C%20looking%20wise%20and%20experienced%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=200&height=200&seq=16&orientation=squarish" alt="Dr. Hari Poudel" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Dr. Hari Poudel</h4>
+<p class="text-primary text-sm">Research Director</p>
+</div>
+</div>
+<p class="text-gray-700 text-sm mb-4">Leads our research initiatives and academic partnerships. Specializes in the historical development of astrological systems.</p>
+<div class="flex items-center text-sm text-gray-600">
+<div class="flex items-center mr-4">
+<i class="ri-mail-line mr-1"></i>
+<span>hari@astro.org</span>
+</div>
+<div class="flex items-center">
+<i class="ri-phone-line mr-1"></i>
+<span>+977 98-7890-1234</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-8 fade-in">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-2xl font-bold">All Members</h3>
+<div class="flex items-center space-x-4">
+<div class="flex items-center space-x-2">
+<button id="gridViewBtn" class="w-10 h-10 bg-primary text-white rounded flex items-center justify-center">
+<i class="ri-grid-line ri-lg"></i>
+</button>
+<button id="listViewBtn" class="w-10 h-10 bg-white shadow rounded flex items-center justify-center">
+<i class="ri-list-check-2 ri-lg"></i>
+</button>
+</div>
+<div class="relative">
+<input type="text" placeholder="Search members..." class="pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:border-primary w-64">
+<div class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 flex items-center justify-center">
+<i class="ri-search-line text-gray-400"></i>
+</div>
+</div>
+</div>
+</div>
+<!-- Grid View (Default) -->
+<div id="gridView" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<!-- Page 1 Members -->
+<div class="bg-gradient-to-br from-rose-50 to-rose-100 rounded-lg shadow-lg overflow-hidden">
+<div class="p-4">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-3">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20young%20Indian%20woman%20with%20a%20friendly%20smile%2C%20casual%20professional%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=17&orientation=squarish" alt="Anika Sharma" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Anika Sharma</h4>
+<p class="text-gray-600 text-sm">Astrologer</p>
+</div>
+</div>
+<p class="text-gray-700 text-sm mb-3">Specializes in natal chart readings and synastry. Certified in Vedic and Western astrology.</p>
+<div class="flex items-center text-xs text-gray-600">
+<i class="ri-mail-line mr-1"></i>
+<span>anika.s@gmail.com</span>
+</div>
+</div>
+</div>
+<!-- Member 2 -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+<div class="p-4">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-3">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20middle-aged%20Nepalese%20man%20with%20a%20thoughtful%20expression%2C%20casual%20professional%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=18&orientation=squarish" alt="Deepak Rai" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Deepak Rai</h4>
+<p class="text-gray-600 text-sm">Instructor</p>
+</div>
+</div>
+<p class="text-gray-700 text-sm mb-3">Teaches intermediate and advanced classes on planetary transits and progressions.</p>
+<div class="flex items-center text-xs text-gray-600">
+<i class="ri-mail-line mr-1"></i>
+<span>deepak.r@outlook.com</span>
+</div>
+</div>
+</div>
+<!-- Member 3 -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+<div class="p-4">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-3">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20young%20Nepalese%20woman%20with%20glasses%20and%20a%20professional%20appearance%2C%20business%20casual%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=19&orientation=squarish" alt="Sunita Adhikari" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Sunita Adhikari</h4>
+<p class="text-gray-600 text-sm">Researcher</p>
+</div>
+</div>
+<p class="text-gray-700 text-sm mb-3">Conducts research on correlations between astrological aspects and major historical events.</p>
+<div class="flex items-center text-xs text-gray-600">
+<i class="ri-mail-line mr-1"></i>
+<span>sunita.a@yahoo.com</span>
+</div>
+</div>
+</div>
+<!-- Member 4 -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+<div class="p-4">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-3">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20an%20older%20Indian%20man%20with%20a%20beard%20and%20wise%20expression%2C%20traditional%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=20&orientation=squarish" alt="Ramesh Patel" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Ramesh Patel</h4>
+<p class="text-gray-600 text-sm">Senior Astrologer</p>
+</div>
+</div>
+<p class="text-gray-700 text-sm mb-3">Specializes in predictive astrology and remedial measures based on Vedic principles.</p>
+<div class="flex items-center text-xs text-gray-600">
+<i class="ri-mail-line mr-1"></i>
+<span>ramesh.p@hotmail.com</span>
+</div>
+</div>
+</div>
+<!-- Member 5 -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+<div class="p-4">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-3">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20young%20Nepalese%20woman%20with%20a%20creative%20appearance%2C%20casual%20stylish%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=21&orientation=squarish" alt="Nisha Tamang" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Nisha Tamang</h4>
+<p class="text-gray-600 text-sm">Content Creator</p>
+</div>
+</div>
+<p class="text-gray-700 text-sm mb-3">Creates educational content on astrology for our website, social media, and newsletter.</p>
+<div class="flex items-center text-xs text-gray-600">
+<i class="ri-mail-line mr-1"></i>
+<span>nisha.t@gmail.com</span>
+</div>
+</div>
+</div>
+<!-- Member 6 -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+<div class="p-4">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-3">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20middle-aged%20Indian%20man%20with%20a%20professional%20appearance%2C%20business%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=22&orientation=squarish" alt="Vijay Mehta" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Vijay Mehta</h4>
+<p class="text-gray-600 text-sm">Financial Astrologer</p>
+</div>
+</div>
+<p class="text-gray-700 text-sm mb-3">Specializes in financial astrology, market predictions, and wealth planning based on natal charts.</p>
+<div class="flex items-center text-xs text-gray-600">
+<i class="ri-mail-line mr-1"></i>
+<span>vijay.m@gmail.com</span>
+</div>
+</div>
+</div>
+<!-- Member 7 -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+<div class="p-4">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-3">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20young%20Nepalese%20woman%20with%20a%20friendly%20smile%2C%20casual%20professional%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=23&orientation=squarish" alt="Anjali Shrestha" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Anjali Shrestha</h4>
+<p class="text-gray-600 text-sm">Event Coordinator</p>
+</div>
+</div>
+<p class="text-gray-700 text-sm mb-3">Assists in organizing workshops, retreats, and celestial celebrations for our community.</p>
+<div class="flex items-center text-xs text-gray-600">
+<i class="ri-mail-line mr-1"></i>
+<span>anjali.s@outlook.com</span>
+</div>
+</div>
+</div>
+<!-- Member 8 -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+<div class="p-4">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-3">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20middle-aged%20Nepalese%20man%20with%20glasses%20and%20a%20scholarly%20appearance%2C%20business%20casual%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=24&orientation=squarish" alt="Binod Khatri" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">Binod Khatri</h4>
+<p class="text-gray-600 text-sm">Academic Liaison</p>
+</div>
+</div>
+<p class="text-gray-700 text-sm mb-3">Coordinates our partnerships with academic institutions and research organizations.</p>
+<div class="flex items-center text-xs text-gray-600">
+<i class="ri-mail-line mr-1"></i>
+<span>binod.k@yahoo.com</span>
+</div>
+</div>
+</div>
+</div>
+<!-- List View (Hidden by Default) -->
+<div id="listView" class="hidden">
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+<table class="min-w-full divide-y divide-gray-200">
+<thead class="bg-gray-50">
+<tr>
+<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Position</th>
+<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Specialization</th>
+<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200">
+<tr>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="flex-shrink-0 h-10 w-10 rounded-full overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20young%20Indian%20woman%20with%20a%20friendly%20smile%2C%20casual%20professional%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=25&orientation=squarish" alt="Anika Sharma" class="h-full w-full object-cover object-top">
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-900">Anika Sharma</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900">Astrologer</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900">Natal charts, Synastry</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+anika.s@gmail.com
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="flex-shrink-0 h-10 w-10 rounded-full overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20middle-aged%20Nepalese%20man%20with%20a%20thoughtful%20expression%2C%20casual%20professional%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=26&orientation=squarish" alt="Deepak Rai" class="h-full w-full object-cover object-top">
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-900">Deepak Rai</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900">Instructor</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900">Planetary transits, Progressions</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+deepak.r@outlook.com
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="flex-shrink-0 h-10 w-10 rounded-full overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20young%20Nepalese%20woman%20with%20glasses%20and%20a%20professional%20appearance%2C%20business%20casual%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=27&orientation=squarish" alt="Sunita Adhikari" class="h-full w-full object-cover object-top">
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-900">Sunita Adhikari</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900">Researcher</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900">Historical astrology, Pattern analysis</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+sunita.a@yahoo.com
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="flex-shrink-0 h-10 w-10 rounded-full overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20an%20older%20Indian%20man%20with%20a%20beard%20and%20wise%20expression%2C%20traditional%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=28&orientation=squarish" alt="Ramesh Patel" class="h-full w-full object-cover object-top">
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-900">Ramesh Patel</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900">Senior Astrologer</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900">Predictive astrology, Remedial measures</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+ramesh.p@hotmail.com
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="flex-shrink-0 h-10 w-10 rounded-full overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20young%20Nepalese%20woman%20with%20a%20creative%20appearance%2C%20casual%20stylish%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=29&orientation=squarish" alt="Nisha Tamang" class="h-full w-full object-cover object-top">
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-900">Nisha Tamang</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900">Content Creator</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900">Educational content, Social media</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+nisha.t@gmail.com
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="flex-shrink-0 h-10 w-10 rounded-full overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20middle-aged%20Indian%20man%20with%20a%20professional%20appearance%2C%20business%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=30&orientation=squarish" alt="Vijay Mehta" class="h-full w-full object-cover object-top">
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-900">Vijay Mehta</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900">Financial Astrologer</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900">Financial astrology, Wealth planning</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+vijay.m@gmail.com
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="flex-shrink-0 h-10 w-10 rounded-full overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20young%20Nepalese%20woman%20with%20a%20friendly%20smile%2C%20casual%20professional%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=31&orientation=squarish" alt="Anjali Shrestha" class="h-full w-full object-cover object-top">
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-900">Anjali Shrestha</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900">Event Coordinator</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900">Workshops, Retreats, Celebrations</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+anjali.s@outlook.com
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center">
+<div class="flex-shrink-0 h-10 w-10 rounded-full overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20middle-aged%20Nepalese%20man%20with%20glasses%20and%20a%20scholarly%20appearance%2C%20business%20casual%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=32&orientation=squarish" alt="Binod Khatri" class="h-full w-full object-cover object-top">
+</div>
+<div class="ml-4">
+<div class="text-sm font-medium text-gray-900">Binod Khatri</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900">Academic Liaison</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="text-sm text-gray-900">Academic partnerships, Research</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+binod.k@yahoo.com
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="flex justify-center mt-8 space-x-2" id="membersPagination">
+<button id="prevPage" class="px-4 py-2 bg-white shadow rounded-lg text-gray-700 hover:bg-gray-50">
+<i class="ri-arrow-left-s-line"></i>
+</button>
+<div class="flex space-x-2" id="pageNumbers">
+<!-- Page numbers will be inserted here dynamically -->
+</div>
+<button id="nextPage" class="px-4 py-2 bg-white shadow rounded-lg text-gray-700 hover:bg-gray-50">
+<i class="ri-arrow-right-s-line"></i>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Gallery Section -->
+<section id="gallery" class="pt-24">
+<div class="container mx-auto px-4 md:px-8 py-20">
+<div class="text-center max-w-3xl mx-auto mb-16 fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-6">Gallery</h2>
+<p class="text-gray-700 text-lg">Explore our collection of celestial events, workshops, and community gatherings.</p>
+</div>
+<div class="mb-8 fade-in">
+<div class="flex justify-center space-x-4 mb-8">
+<button class="px-4 py-2 bg-primary text-white rounded-full gallery-filter" data-filter="all">All</button>
+<button class="px-4 py-2 bg-white shadow rounded-full gallery-filter" data-filter="events">Events</button>
+<button class="px-4 py-2 bg-white shadow rounded-full gallery-filter" data-filter="workshops">Workshops</button>
+<button class="px-4 py-2 bg-white shadow rounded-full gallery-filter" data-filter="celestial">Celestial</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="galleryGrid">
+<!-- Gallery Item 1 -->
+<div class="gallery-item overflow-hidden rounded-lg shadow-lg cursor-pointer zoom-hover" data-index="0" data-category="workshops">
+<img src="https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20an%20astrology%20workshop%20with%20people%20gathered%20around%20a%20large%20illuminated%20star%20chart%2C%20with%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20mystical%20and%20educational%20atmosphere&width=400&height=300&seq=33&orientation=landscape" alt="Astrology Workshop" class="w-full h-64 object-cover object-top">
+</div>
+<!-- Gallery Item 2 -->
+<div class="gallery-item overflow-hidden rounded-lg shadow-lg cursor-pointer zoom-hover" data-index="1" data-category="celestial">
+<img src="https://readdy.ai/api/search-image?query=a%20stunning%20image%20of%20a%20lunar%20eclipse%20viewed%20through%20a%20telescope%2C%20with%20people%20gathered%20to%20observe%2C%20with%20subtle%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20mystical%20nighttime%20atmosphere&width=400&height=300&seq=34&orientation=landscape" alt="Lunar Eclipse Viewing" class="w-full h-64 object-cover object-top">
+</div>
+<!-- Gallery Item 3 -->
+<div class="gallery-item overflow-hidden rounded-lg shadow-lg cursor-pointer zoom-hover" data-index="2" data-category="events">
+<img src="https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20an%20astrology%20conference%20with%20speakers%20on%20stage%20presenting%20celestial%20charts%20and%20diagrams%2C%20with%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20professional%20and%20educational%20atmosphere&width=400&height=300&seq=35&orientation=landscape" alt="Annual Conference" class="w-full h-64 object-cover object-top">
+</div>
+<!-- Gallery Item 4 -->
+<div class="gallery-item overflow-hidden rounded-lg shadow-lg cursor-pointer zoom-hover" data-index="3" data-category="celestial">
+<img src="https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20a%20meditation%20circle%20under%20the%20stars%2C%20with%20people%20sitting%20in%20a%20circle%20outdoors%20at%20night%20with%20candles%2C%20with%20subtle%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20mystical%20and%20peaceful%20atmosphere&width=400&height=300&seq=36&orientation=landscape" alt="Full Moon Meditation" class="w-full h-64 object-cover object-top">
+</div>
+<!-- Gallery Item 5 -->
+<div class="gallery-item overflow-hidden rounded-lg shadow-lg cursor-pointer zoom-hover" data-index="4" data-category="workshops">
+<img src="https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20an%20astrologer%20working%20with%20a%20client%2C%20reading%20a%20birth%20chart%20with%20celestial%20maps%20and%20diagrams%20spread%20on%20a%20table%2C%20with%20subtle%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20professional%20and%20mystical%20atmosphere&width=400&height=300&seq=37&orientation=landscape" alt="Personal Reading Session" class="w-full h-64 object-cover object-top">
+</div>
+<!-- Gallery Item 6 -->
+<div class="gallery-item overflow-hidden rounded-lg shadow-lg cursor-pointer zoom-hover" data-index="5" data-category="events">
+<img src="https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20a%20celestial%20celebration%20with%20people%20in%20festive%20attire%20celebrating%20under%20star-shaped%20decorations%20and%20lights%2C%20with%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20joyful%20and%20mystical%20atmosphere&width=400&height=300&seq=38&orientation=landscape" alt="Celestial New Year Celebration" class="w-full h-64 object-cover object-top">
+</div>
+<!-- Gallery Item 7 -->
+<div class="gallery-item overflow-hidden rounded-lg shadow-lg cursor-pointer zoom-hover" data-index="6" data-category="celestial">
+<img src="https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20an%20outdoor%20stargazing%20event%20with%20telescopes%20set%20up%20and%20people%20looking%20at%20the%20night%20sky%2C%20with%20subtle%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20mystical%20nighttime%20atmosphere&width=400&height=300&seq=39&orientation=landscape" alt="Community Stargazing" class="w-full h-64 object-cover object-top">
+</div>
+<!-- Gallery Item 8 -->
+<div class="gallery-item overflow-hidden rounded-lg shadow-lg cursor-pointer zoom-hover" data-index="7" data-category="events">
+<img src="https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20a%20book%20signing%20event%20with%20an%20astrology%20author%20signing%20books%20for%20fans%2C%20with%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20literary%20and%20mystical%20atmosphere&width=400&height=300&seq=40&orientation=landscape" alt="Book Signing Event" class="w-full h-64 object-cover object-top">
+</div>
+<!-- Gallery Item 9 -->
+<div class="gallery-item overflow-hidden rounded-lg shadow-lg cursor-pointer zoom-hover" data-index="8" data-category="events">
+<img src="https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20a%20zodiac-themed%20art%20exhibition%20with%20paintings%20and%20sculptures%20of%20zodiac%20symbols%2C%20with%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20an%20artistic%20and%20mystical%20atmosphere&width=400&height=300&seq=41&orientation=landscape" alt="Zodiac Art Exhibition" class="w-full h-64 object-cover object-top">
+</div>
+<!-- Gallery Item 10 -->
+<div class="gallery-item overflow-hidden rounded-lg shadow-lg cursor-pointer zoom-hover" data-index="9" data-category="events">
+<img src="https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20a%20graduation%20ceremony%20for%20astrology%20students%2C%20with%20graduates%20receiving%20certificates%2C%20with%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20celebratory%20and%20educational%20atmosphere&width=400&height=300&seq=42&orientation=landscape" alt="Astrology Course Graduation" class="w-full h-64 object-cover object-top">
+</div>
+<!-- Gallery Item 11 -->
+<div class="gallery-item overflow-hidden rounded-lg shadow-lg cursor-pointer zoom-hover" data-index="10" data-category="workshops">
+<img src="https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20a%20panel%20discussion%20with%20astrology%20experts%20debating%20theories%2C%20with%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20an%20intellectual%20and%20professional%20atmosphere&width=400&height=300&seq=43&orientation=landscape" alt="Expert Panel Discussion" class="w-full h-64 object-cover object-top">
+</div>
+<!-- Gallery Item 12 -->
+<div class="gallery-item overflow-hidden rounded-lg shadow-lg cursor-pointer zoom-hover" data-index="11" data-category="events">
+<img src="https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20a%20charity%20fundraiser%20organized%20by%20the%20astrology%20association%2C%20with%20people%20mingling%20and%20auction%20items%20displayed%2C%20with%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20an%20elegant%20and%20community-focused%20atmosphere&width=400&height=300&seq=44&orientation=landscape" alt="Annual Charity Gala" class="w-full h-64 object-cover object-top">
+</div>
+</div>
+</div>
+<div class="text-center mt-8">
+<button class="bg-primary text-white px-8 py-3 !rounded-button font-medium btn-hover whitespace-nowrap">Load More</button>
+</div>
+</div>
+<!-- Gallery Modal -->
+<div class="gallery-modal" id="galleryModal">
+<div class="modal-close" id="modalClose">
+<i class="ri-close-line"></i>
+</div>
+<div class="modal-nav modal-prev" id="modalPrev">
+<i class="ri-arrow-left-s-line"></i>
+</div>
+<div class="modal-content">
+<img id="modalImage" src="" alt="Gallery Image" class="max-w-full max-h-full">
+</div>
+<div class="modal-nav modal-next" id="modalNext">
+<i class="ri-arrow-right-s-line"></i>
+</div>
+</div>
+</section>
+<!-- Join Class Section -->
+<section id="join" class="pt-24 bg-gray-50">
+<div class="container mx-auto px-4 md:px-8 py-20">
+<div class="text-center max-w-3xl mx-auto mb-16 fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-6">Join Our Classes</h2>
+<p class="text-gray-700 text-lg">Discover the ancient wisdom of astrology through our comprehensive courses designed for all levels.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+<div class="fade-in">
+<div class="relative rounded-lg overflow-hidden shadow-lg aspect-video">
+<iframe width="100%" height="100%" src="https://www.youtube.com/watch?v=TwLfHEO_SNs" title="Astrology Class Introduction" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="mt-8 bg-white p-6 rounded-lg shadow-lg">
+<h3 class="text-xl font-bold mb-4">Upcoming Classes</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center pb-4 border-b border-gray-200">
+<div>
+<h4 class="font-semibold">Foundations of Astrology</h4>
+<p class="text-gray-600 text-sm">Begins April 20, 2025</p>
+</div>
+<span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">Enrolling</span>
+</div>
+<div class="flex justify-between items-center pb-4 border-b border-gray-200">
+<div>
+<h4 class="font-semibold">Intermediate Chart Reading</h4>
+<p class="text-gray-600 text-sm">Begins May 15, 2025</p>
+</div>
+<span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-medium">Filling Fast</span>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<h4 class="font-semibold">Advanced Predictive Techniques</h4>
+<p class="text-gray-600 text-sm">Begins June 10, 2025</p>
+</div>
+<span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">Coming Soon</span>
+</div>
+</div>
+</div>
+</div>
+<div class="fade-in">
+<div class="bg-white p-8 rounded-lg shadow-lg">
+<h3 class="text-xl font-bold mb-6">Registration Form</h3>
+<form id="classRegistrationForm">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div>
+<label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+<input type="text" id="fullName" name="fullName" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary" required>
+</div>
+<div>
+<label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+<input type="email" id="email" name="email" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary" required>
+</div>
+<div>
+<label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+<input type="tel" id="phone" name="phone" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary" required>
+</div>
+<div>
+<label for="courseSelect" class="block text-sm font-medium text-gray-700 mb-1">Select Course</label>
+<div class="relative">
+<select id="courseSelect" name="course" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary appearance-none pr-8" required>
+<option value="">Choose a course</option>
+<option value="foundations">Foundations of Astrology</option>
+<option value="intermediate">Intermediate Chart Reading</option>
+<option value="advanced">Advanced Predictive Techniques</option>
+</select>
+<div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+<i class="ri-arrow-down-s-line text-gray-400"></i>
+</div>
+</div>
+</div>
+<div>
+<label for="birthDate" class="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+<input type="date" id="birthDate" name="birthDate" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary" required>
+</div>
+<div>
+<label for="birthTime" class="block text-sm font-medium text-gray-700 mb-1">Time of Birth (if known)</label>
+<input type="time" id="birthTime" name="birthTime" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary">
+</div>
+<div>
+<label for="birthPlace" class="block text-sm font-medium text-gray-700 mb-1">Place of Birth</label>
+<input type="text" id="birthPlace" name="birthPlace" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary" required>
+</div>
+<div>
+<label for="experience" class="block text-sm font-medium text-gray-700 mb-1">Astrology Experience</label>
+<div class="relative">
+<select id="experience" name="experience" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary appearance-none pr-8" required>
+<option value="">Select your level</option>
+<option value="beginner">Beginner - New to astrology</option>
+<option value="intermediate">Intermediate - Some knowledge</option>
+<option value="advanced">Advanced - Experienced practitioner</option>
+</select>
+<div class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+<i class="ri-arrow-down-s-line text-gray-400"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<label for="message" class="block text-sm font-medium text-gray-700 mb-1">Questions or Special Requests</label>
+<textarea id="message" name="message" rows="4" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary"></textarea>
+</div>
+<div class="mb-6">
+<label class="flex items-center">
+<input type="checkbox" class="custom-checkbox" required>
+<span class="ml-2 text-sm text-gray-700">I agree to the <a href="#" class="text-primary">terms and conditions</a></span>
+</label>
+</div>
+<button type="submit" id="submitRegistration" class="bg-primary text-white px-8 py-3 !rounded-button font-medium btn-hover whitespace-nowrap w-full">Submit Registration</button>
+</form>
+<div id="registrationSuccess" class="hidden mt-6 p-4 bg-green-100 text-green-800 rounded-lg">
+<div class="flex items-center">
+<i class="ri-check-line ri-lg mr-2"></i>
+<p>Registration submitted successfully! We'll contact you soon with more details.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="pt-24">
+<div class="container mx-auto px-4 md:px-8 py-20">
+<div class="text-center max-w-3xl mx-auto mb-16 fade-in">
+<h2 class="text-3xl md:text-4xl font-bold mb-6">Contact Us</h2>
+<p class="text-gray-700 text-lg">Have questions or want to learn more? Reach out to our team and we'll be happy to help.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<div class="fade-in">
+<div class="bg-white p-8 rounded-lg shadow-lg">
+<h3 class="text-xl font-bold mb-6">Send Us a Message</h3>
+<form id="contactForm">
+<div class="mb-6">
+<label for="contactName" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+<input type="text" id="contactName" name="contactName" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary" required>
+</div>
+<div class="mb-6">
+<label for="contactEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+<input type="email" id="contactEmail" name="contactEmail" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary" required>
+</div>
+<div class="mb-6">
+<label for="contactSubject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+<input type="text" id="contactSubject" name="contactSubject" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary" required>
+</div>
+<div class="mb-6">
+<label for="contactMessage" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+<textarea id="contactMessage" name="contactMessage" rows="5" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary" required></textarea>
+</div>
+<button type="submit" id="submitContact" class="bg-primary text-white px-8 py-3 !rounded-button font-medium btn-hover whitespace-nowrap">Send Message</button>
+</form>
+<div id="contactSuccess" class="hidden mt-6 p-4 bg-green-100 text-green-800 rounded-lg">
+<div class="flex items-center">
+<i class="ri-check-line ri-lg mr-2"></i>
+<p>Unsuccessfull! Plz call 9856000000 for confirmation.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fade-in">
+<div class="bg-white p-8 rounded-lg shadow-lg mb-8">
+<h3 class="text-xl font-bold mb-6">Our Information</h3>
+<div class="space-y-4">
+<div class="flex items-start">
+<div class="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-4 flex-shrink-0">
+<i class="ri-map-pin-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-semibold mb-1">Address</h4>
+<p class="text-gray-700">Nepal Krishnamurti Jyotish Parisad<br>Butwal-17, Rupandehi<br>Nepal</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-4 flex-shrink-0">
+<i class="ri-phone-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-semibold mb-1">Phone</h4>
+<p class="text-gray-700">+977 71-123456<br>+977 9812345678</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-4 flex-shrink-0">
+<i class="ri-mail-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-semibold mb-1">Email</h4>
+<p class="text-gray-700">info@krishnamurtijotish.org.np<br>support@krishnamurtijotish.org.np</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center mr-4 flex-shrink-0">
+<i class="ri-time-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-semibold mb-1">Office Hours</h4>
+<p class="text-gray-700">Monday - Friday: 9:00 AM - 5:00 PM<br>Saturday: 10:00 AM - 2:00 PM<br>Sunday: Closed</p>
+</div>
+</div>
+</div>
+<div class="mt-6 flex space-x-4">
+<a href="https://ramrajabastakoti.com.np" target="_blank" class="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+<i class="ri-facebook-fill"></i>
+</a>
+<a href="https://ramrajabastakoti.com.np" target="_blank" class="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+<i class="ri-instagram-line"></i>
+</a>
+<a href="https://ramrajabastakoti.com.np" target="_blank" class="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+<i class="ri-twitter-x-line"></i>
+</a>
+<a href="https://ramrajabastakoti.com.np" target="_blank" class="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+<i class="ri-youtube-line"></i>
+</a>
+<a href="https://ramrajabastakoti.com.np" target="_blank" class="w-10 h-10 rounded-full bg-primary bg-opacity-10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+<i class="ri-whatsapp-line"></i>
+</a>
+</div>
+</div>
+<div class="rounded-lg overflow-hidden shadow-lg h-80">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.2773756879396!2d83.46069937536897!3d27.70484227619425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3996868ce8ed3e45%3A0x1bc4817ba786f93e!2sPuthon%20Tech%20Com%20Nepal%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1681489632175!5m2!1sen!2snp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white">
+<div class="container mx-auto px-4 md:px-8 py-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+<div>
+<div class="flex items-center mb-6">
+<img src="https://static.readdy.ai/image/cd98293c0f503a46761cd65b2ae2e7a3/3025359e792447124a301f36a0fb0e7e.jpeg" alt="Astrology Association Logo" class="h-12 w-12">
+</div>
+<p class="text-gray-400 mb-6">Guiding you through life's journey with the wisdom of the stars since 2019.</p>
+<div class="flex space-x-4">
+<a href="https://ramrajabastakoti.com.np" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-facebook-fill ri-lg"></i>
+</a>
+<a href="https://ramrajabastakoti.com.np" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-instagram-line ri-lg"></i>
+</a>
+<a href="https://ramrajabastakoti.com.np" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-twitter-x-line ri-lg"></i>
+</a>
+<a href="https://ramrajabastakoti.com.np" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-youtube-line ri-lg"></i>
+</a>
+<a href="https://ramrajabastakoti.com.np" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+<i class="ri-whatsapp-line ri-lg"></i>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+<ul class="space-y-3">
+<li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+<li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+<li><a href="#members" class="text-gray-400 hover:text-white transition-colors">Our Members</a></li>
+<li><a href="#gallery" class="text-gray-400 hover:text-white transition-colors">Gallery</a></li>
+<li><a href="#join" class="text-gray-400 hover:text-white transition-colors">Join Classes</a></li>
+<li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-6">Services</h4>
+<ul class="space-y-3">
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Personal Readings</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Astrology Classes</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Birth Chart Analysis</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Compatibility Reports</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Career Guidance</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Yearly Forecasts</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-6">Newsletter</h4>
+<p class="text-gray-400 mb-4">Subscribe to receive monthly horoscopes and updates on celestial events.</p>
+<form class="space-y-4">
+<div class="relative">
+<input type="email" placeholder="Your email address" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:border-primary">
+</div>
+<button type="submit" class="bg-primary text-white px-6 py-3 !rounded-button font-medium btn-hover whitespace-nowrap w-full">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="pt-8 border-t border-gray-800 text-center">
+<div class="flex justify-center space-x-6 mb-6">
+<div class="flex items-center">
+<i class="ri-visa-line ri-lg text-gray-400 mr-2"></i>
+<span class="text-gray-400">Visa</span>
+</div>
+<div class="flex items-center">
+<i class="ri-mastercard-line ri-lg text-gray-400 mr-2"></i>
+<span class="text-gray-400">Mastercard</span>
+</div>
+<div class="flex items-center">
+<i class="ri-esewa-line ri-lg text-gray-400 mr-2"></i>
+<span class="text-gray-400">Esewa</span>
+</div>
+</div>
+<p class="text-gray-500 mb-4">&copy; 2025 Astrology Association. All rights reserved.</p>
+<p class="Developed by <a href= https://ramrajbastakoti.com.np target="_blank" class="underline">9856020179</a></p>
+</div>
+</div>
 </footer>
-
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Mobile Menu Toggle
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+mobileMenuBtn.addEventListener('click', function() {
+mobileMenu.classList.toggle('hidden');
+});
+// Fade-in Animation
+const fadeElements = document.querySelectorAll('.fade-in');
+const fadeInObserver = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('visible');
+}
+});
+}, {
+threshold: 0.1
+});
+fadeElements.forEach(element => {
+fadeInObserver.observe(element);
+});
+// Testimonials Slider
+const testimonialSlider = document.getElementById('testimonialSlider');
+const prevTestimonialBtn = document.getElementById('prevTestimonial');
+const nextTestimonialBtn = document.getElementById('nextTestimonial');
+let testimonialCurrentPosition = 0;
+let testimonialItemWidth = window.innerWidth;
+let testimonialTotalItems = 12;
+let testimonialItemsPerView = 1;
+function updateTestimonialLayout() {
+if (window.innerWidth >= 768) {
+testimonialItemWidth = window.innerWidth / 3;
+testimonialItemsPerView = 3;
+} else {
+testimonialItemWidth = window.innerWidth;
+testimonialItemsPerView = 1;
+}
+testimonialSlider.style.transform = `translateX(${testimonialCurrentPosition * testimonialItemWidth}px)`;
+}
+updateTestimonialLayout();
+window.addEventListener('resize', updateTestimonialLayout);
+prevTestimonialBtn.addEventListener('click', function() {
+testimonialCurrentPosition = Math.min(testimonialCurrentPosition + testimonialItemsPerView, 0);
+testimonialSlider.style.transform = `translateX(${testimonialCurrentPosition * testimonialItemWidth}px)`;
+});
+nextTestimonialBtn.addEventListener('click', function() {
+const maxPosition = -(Math.ceil((testimonialTotalItems - testimonialItemsPerView) / testimonialItemsPerView)) * testimonialItemsPerView;
+testimonialCurrentPosition = Math.max(testimonialCurrentPosition - testimonialItemsPerView, maxPosition);
+testimonialSlider.style.transform = `translateX(${testimonialCurrentPosition * testimonialItemWidth}px)`;
+});
+// Auto-slide testimonials
+let testimonialInterval = setInterval(() => {
+const maxPosition = -(Math.ceil((testimonialTotalItems - testimonialItemsPerView) / testimonialItemsPerView)) * testimonialItemsPerView;
+if (testimonialCurrentPosition <= maxPosition) {
+testimonialCurrentPosition = 0;
+} else {
+testimonialCurrentPosition = Math.max(testimonialCurrentPosition - testimonialItemsPerView, maxPosition);
+}
+testimonialSlider.style.transform = `translateX(${testimonialCurrentPosition * testimonialItemWidth}px)`;
+}, 5000);
+// Pause auto-slide on hover
+testimonialSlider.addEventListener('mouseenter', () => {
+clearInterval(testimonialInterval);
+});
+// Resume auto-slide on mouse leave
+testimonialSlider.addEventListener('mouseleave', () => {
+testimonialInterval = setInterval(() => {
+const maxPosition = -(Math.ceil((testimonialTotalItems - testimonialItemsPerView) / testimonialItemsPerView)) * testimonialItemsPerView;
+if (testimonialCurrentPosition <= maxPosition) {
+testimonialCurrentPosition = 0;
+} else {
+testimonialCurrentPosition = Math.max(testimonialCurrentPosition - testimonialItemsPerView, maxPosition);
+}
+testimonialSlider.style.transform = `translateX(${testimonialCurrentPosition * testimonialItemWidth}px)`;
+}, 5000);
+});
+// Executive Members Carousel
+const execSlider = document.getElementById('execSlider');
+const prevExecBtn = document.getElementById('prevExec');
+const nextExecBtn = document.getElementById('nextExec');
+let execCurrentPosition = 0;
+let execItemWidth = 350; // Default width
+function updateExecItemWidth() {
+if (window.innerWidth < 640) {
+execItemWidth = 300;
+} else {
+execItemWidth = 350;
+}
+}
+updateExecItemWidth();
+window.addEventListener('resize', updateExecItemWidth);
+prevExecBtn.addEventListener('click', function() {
+execCurrentPosition = Math.min(execCurrentPosition + execItemWidth, 0);
+execSlider.style.transform = `translateX(${execCurrentPosition}px)`;
+});
+nextExecBtn.addEventListener('click', function() {
+const maxPosition = -(execSlider.scrollWidth - execSlider.parentElement.clientWidth);
+execCurrentPosition = Math.max(execCurrentPosition - execItemWidth, maxPosition);
+execSlider.style.transform = `translateX(${execCurrentPosition}px)`;
+});
+// Members Data and Pagination
+const membersData = [
+// Original members...
+{name: "Anika Sharma", position: "Astrologer", specialization: "Natal chart readings and synastry", email: "anika.s@gmail.com", image: "https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20young%20Indian%20woman%20with%20a%20friendly%20smile%2C%20casual%20professional%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=17&orientation=squarish", bgClass: "from-rose-50 to-rose-100"},
+{name: "Deepak Rai", position: "Instructor", specialization: "Planetary transits and progressions", email: "deepak.r@outlook.com", image: "https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20middle-aged%20Nepalese%20man%20with%20a%20thoughtful%20expression%2C%20casual%20professional%20attire%2C%20neutral%20background%2C%20high-quality%20professional%20headshot&width=100&height=100&seq=18&orientation=squarish", bgClass: "from-blue-50 to-blue-100"},
+// ... [previous members]
+// Additional 99 members with unique background colors
+...Array.from({length: 99}, (_, i) => {
+const colorPairs = [
+['rose', 'pink'], ['blue', 'indigo'], ['green', 'emerald'],
+['yellow', 'amber'], ['purple', 'violet'], ['pink', 'fuchsia'],
+['indigo', 'blue'], ['teal', 'cyan'], ['orange', 'red'],
+['lime', 'green'], ['emerald', 'teal'], ['cyan', 'sky'],
+['violet', 'purple'], ['fuchsia', 'rose'], ['amber', 'yellow'],
+['red', 'orange'], ['sky', 'blue'], ['slate', 'gray']
+];
+const [color1, color2] = colorPairs[i % colorPairs.length];
+const intensity = Math.floor(i / colorPairs.length) % 3 * 100 + 50;
+const names = [
+"Aarav", "Aditi", "Amit", "Ananya", "Arjun", "Divya", "Gaurav", "Ishaan",
+"Kavya", "Krishna", "Lakshmi", "Manish", "Neha", "Nikhil", "Pooja", "Rahul",
+"Riya", "Rohan", "Sanjay", "Shreya", "Tanvi", "Varun", "Vidya", "Yash"
+];
+const surnames = [
+"Acharya", "Bhattarai", "Chhetri", "Dahal", "Gautam", "Karki", "Koirala",
+"Lamichhane", "Maharjan", "Nepal", "Pandey", "Rana", "Sharma", "Shrestha",
+"Subedi", "Thapa", "Upreti", "Yadav"
+];
+const positions = [
+"Vedic Astrologer", "Numerologist", "Tarot Reader", "Palmist",
+"Cosmic Counselor", "Energy Healer", "Meditation Guide", "Spiritual Advisor",
+"Zodiac Specialist", "Past Life Expert", "Chakra Healer", "Feng Shui Master"
+];
+const specializations = [
+"Birth Chart Analysis", "Relationship Compatibility", "Career Guidance",
+"Spiritual Development", "Life Path Reading", "Energy Alignment",
+"Karmic Pattern Analysis", "Future Predictions", "Planetary Healing",
+"Ancestral Pattern Reading", "Soul Purpose Discovery", "Destiny Mapping"
+];
+const name = `${names[Math.floor(Math.random() * names.length)]} ${surnames[Math.floor(Math.random() * surnames.length)]}`;
+const position = positions[Math.floor(Math.random() * positions.length)];
+const specialization = specializations[Math.floor(Math.random() * specializations.length)];
+const email = `${name.toLowerCase().replace(' ', '.')}@astrology.org`;
+return {
+name,
+position,
+specialization,
+email,
+image: `https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20$%7BMath.random%28%29%20%3E%200.5%20%3F%20female%20:%20male%7D%20astrologer%20with%20mystical%20appearance%2C%20professional%20attire%2C%20neutral%20background&width=100&height=100&seq=${100 + i}&orientation=squarish`,
+bgClass: `from-${color1}-${intensity} to-${color2}-${intensity}`
+};
+})
+];
+const itemsPerPage = 12; // Show 12 members per page
+let currentPage = 1;
+function renderMembers(page) {
+const start = (page - 1) * itemsPerPage;
+const end = start + itemsPerPage;
+const pageMembers = membersData.slice(start, end);
+const gridView = document.getElementById('gridView');
+gridView.innerHTML = pageMembers.map(member => `
+<div class="bg-gradient-to-br ${member.bgClass} rounded-lg shadow-lg overflow-hidden">
+<div class="p-4">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden mr-3">
+<img src="${member.image}" alt="${member.name}" class="w-full h-full object-cover object-top">
+</div>
+<div>
+<h4 class="font-semibold">${member.name}</h4>
+<p class="text-gray-600 text-sm">${member.position}</p>
+</div>
+</div>
+<p class="text-gray-700 text-sm mb-3">${member.specialization}</p>
+<div class="flex items-center text-xs text-gray-600">
+<i class="ri-mail-line mr-1"></i>
+<span>${member.email}</span>
+</div>
+</div>
+</div>
+`).join('');
+updatePagination(page);
+}
+function updatePagination(page) {
+const totalPages = Math.ceil(membersData.length / itemsPerPage);
+const pageNumbers = document.getElementById('pageNumbers');
+pageNumbers.innerHTML = '';
+// Show maximum 5 page numbers
+let startPage = Math.max(1, page - 2);
+let endPage = Math.min(totalPages, startPage + 4);
+if (endPage - startPage < 4) {
+startPage = Math.max(1, endPage - 4);
+}
+for (let i = startPage; i <= endPage; i++) {
+const button = document.createElement('button');
+button.setAttribute('data-page', i);
+button.classList.add('px-4', 'py-2', 'rounded-lg', 'hover:bg-gray-50');
+if (i === page) {
+button.classList.add('bg-primary', 'text-white');
+} else {
+button.classList.add('bg-white', 'text-gray-700', 'shadow');
+}
+button.textContent = i;
+pageNumbers.appendChild(button);
+}
+// Update prev/next buttons
+document.getElementById('prevPage').disabled = page === 1;
+document.getElementById('nextPage').disabled = page === totalPages;
+}
+// Grid/List View Toggle
+const gridViewBtn = document.getElementById('gridViewBtn');
+const listViewBtn = document.getElementById('listViewBtn');
+const gridView = document.getElementById('gridView');
+const listView = document.getElementById('listView');
+// Initialize pagination
+document.getElementById('membersPagination').addEventListener('click', (e) => {
+if (e.target.dataset.page) {
+currentPage = parseInt(e.target.dataset.page);
+renderMembers(currentPage);
+}
+});
+document.getElementById('prevPage').addEventListener('click', () => {
+if (currentPage > 1) {
+currentPage--;
+renderMembers(currentPage);
+}
+});
+document.getElementById('nextPage').addEventListener('click', () => {
+const totalPages = Math.ceil(membersData.length / itemsPerPage);
+if (currentPage < totalPages) {
+currentPage++;
+renderMembers(currentPage);
+}
+});
+// Initial render
+renderMembers(1);
+gridViewBtn.addEventListener('click', function() {
+gridView.classList.remove('hidden');
+listView.classList.add('hidden');
+gridViewBtn.classList.remove('bg-white');
+gridViewBtn.classList.add('bg-primary', 'text-white');
+listViewBtn.classList.remove('bg-primary', 'text-white');
+listViewBtn.classList.add('bg-white');
+});
+listViewBtn.addEventListener('click', function() {
+gridView.classList.add('hidden');
+listView.classList.remove('hidden');
+listViewBtn.classList.remove('bg-white');
+listViewBtn.classList.add('bg-primary', 'text-white');
+gridViewBtn.classList.remove('bg-primary', 'text-white');
+gridViewBtn.classList.add('bg-white');
+});
+// Gallery Filter
+const galleryFilters = document.querySelectorAll('.gallery-filter');
+const galleryItems = document.querySelectorAll('.gallery-item');
+galleryFilters.forEach(filter => {
+filter.addEventListener('click', function() {
+// Update active filter button
+galleryFilters.forEach(btn => {
+btn.classList.remove('bg-primary', 'text-white');
+btn.classList.add('bg-white', 'shadow');
+});
+this.classList.remove('bg-white', 'shadow');
+this.classList.add('bg-primary', 'text-white');
+const filterValue = this.getAttribute('data-filter');
+galleryItems.forEach(item => {
+if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+item.style.display = 'block';
+} else {
+item.style.display = 'none';
+}
+});
+});
+});
+// Gallery Modal
+const galleryModal = document.getElementById('galleryModal');
+const modalImage = document.getElementById('modalImage');
+const modalClose = document.getElementById('modalClose');
+const modalPrev = document.getElementById('modalPrev');
+const modalNext = document.getElementById('modalNext');
+let currentImageIndex = 0;
+const galleryImages = [
+"https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20an%20astrology%20workshop%20with%20people%20gathered%20around%20a%20large%20illuminated%20star%20chart%2C%20with%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20mystical%20and%20educational%20atmosphere&width=800&height=600&seq=33&orientation=landscape",
+"https://readdy.ai/api/search-image?query=a%20stunning%20image%20of%20a%20lunar%20eclipse%20viewed%20through%20a%20telescope%2C%20with%20people%20gathered%20to%20observe%2C%20with%20subtle%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20mystical%20nighttime%20atmosphere&width=800&height=600&seq=34&orientation=landscape",
+"https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20an%20astrology%20conference%20with%20speakers%20on%20stage%20presenting%20celestial%20charts%20and%20diagrams%2C%20with%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20professional%20and%20educational%20atmosphere&width=800&height=600&seq=35&orientation=landscape",
+"https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20a%20meditation%20circle%20under%20the%20stars%2C%20with%20people%20sitting%20in%20a%20circle%20outdoors%20at%20night%20with%20candles%2C%20with%20subtle%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20mystical%20and%20peaceful%20atmosphere&width=800&height=600&seq=36&orientation=landscape",
+"https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20an%20astrologer%20working%20with%20a%20client%2C%20reading%20a%20birth%20chart%20with%20celestial%20maps%20and%20diagrams%20spread%20on%20a%20table%2C%20with%20subtle%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20professional%20and%20mystical%20atmosphere&width=800&height=600&seq=37&orientation=landscape",
+"https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20a%20celestial%20celebration%20with%20people%20in%20festive%20attire%20celebrating%20under%20star-shaped%20decorations%20and%20lights%2C%20with%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20joyful%20and%20mystical%20atmosphere&width=800&height=600&seq=38&orientation=landscape",
+"https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20an%20outdoor%20stargazing%20event%20with%20telescopes%20set%20up%20and%20people%20looking%20at%20the%20night%20sky%2C%20with%20subtle%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20mystical%20nighttime%20atmosphere&width=800&height=600&seq=39&orientation=landscape",
+"https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20a%20book%20signing%20event%20with%20an%20astrology%20author%20signing%20books%20for%20fans%2C%20with%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20literary%20and%20mystical%20atmosphere&width=800&height=600&seq=40&orientation=landscape",
+"https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20a%20zodiac-themed%20art%20exhibition%20with%20paintings%20and%20sculptures%20of%20zodiac%20symbols%2C%20with%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20an%20artistic%20and%20mystical%20atmosphere&width=800&height=600&seq=41&orientation=landscape",
+"https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20a%20graduation%20ceremony%20for%20astrology%20students%2C%20with%20graduates%20receiving%20certificates%2C%20with%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20a%20celebratory%20and%20educational%20atmosphere&width=800&height=600&seq=42&orientation=landscape",
+"https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20a%20panel%20discussion%20with%20astrology%20experts%20debating%20theories%2C%20with%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20an%20intellectual%20and%20professional%20atmosphere&width=800&height=600&seq=43&orientation=landscape",
+"https://readdy.ai/api/search-image?query=a%20beautiful%20image%20of%20a%20charity%20fundraiser%20organized%20by%20the%20astrology%20association%2C%20with%20people%20mingling%20and%20auction%20items%20displayed%2C%20with%20purple%20lighting%20matching%20the%20primary%20color%20%25238E6FF7%2C%20creating%20an%20elegant%20and%20community-focused%20atmosphere&width=800&height=600&seq=44&orientation=landscape"
+];
+galleryItems.forEach((item, index) => {
+item.addEventListener('click', function() {
+currentImageIndex = parseInt(item.getAttribute('data-index'));
+modalImage.src = galleryImages[currentImageIndex];
+galleryModal.style.display = 'flex';
+document.body.style.overflow = 'hidden';
+});
+});
+modalClose.addEventListener('click', function() {
+galleryModal.style.display = 'none';
+document.body.style.overflow = 'auto';
+});
+modalPrev.addEventListener('click', function() {
+currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+modalImage.src = galleryImages[currentImageIndex];
+});
+modalNext.addEventListener('click', function() {
+currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+modalImage.src = galleryImages[currentImageIndex];
+});
+document.addEventListener('keydown', function(e) {
+if (galleryModal.style.display === 'flex') {
+if (e.key === 'ArrowLeft') {
+currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+modalImage.src = galleryImages[currentImageIndex];
+} else if (e.key === 'ArrowRight') {
+currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+modalImage.src = galleryImages[currentImageIndex];
+} else if (e.key === 'Escape') {
+galleryModal.style.display = 'none';
+document.body.style.overflow = 'auto';
+}
+}
+});
+// Form Submissions
+const classRegistrationForm = document.getElementById('classRegistrationForm');
+const registrationSuccess = document.getElementById('registrationSuccess');
+if (classRegistrationForm) {
+classRegistrationForm.addEventListener('submit', function(e) {
+e.preventDefault();
+registrationSuccess.classList.remove('hidden');
+classRegistrationForm.reset();
+setTimeout(() => {
+registrationSuccess.classList.add('hidden');
+}, 5000);
+});
+}
+const contactForm = document.getElementById('contactForm');
+const contactSuccess = document.getElementById('contactSuccess');
+if (contactForm) {
+contactForm.addEventListener('submit', function(e) {
+e.preventDefault();
+contactSuccess.classList.remove('hidden');
+contactForm.reset();
+setTimeout(() => {
+contactSuccess.classList.add('hidden');
+}, 5000);
+});
+}
+// Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+const htmlElement = document.documentElement;
+themeToggle.addEventListener('change', function() {
+if (this.checked) {
+htmlElement.classList.add('dark');
+document.body.style.backgroundColor = '#1a1a1a';
+document.body.style.color = '#ffffff';
+} else {
+htmlElement.classList.remove('dark');
+document.body.style.backgroundColor = '';
+document.body.style.color = '';
+}
+});
+// Smooth Scrolling for Navigation Links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 80,
+behavior: 'smooth'
+});
+// Close mobile menu if open
+if (!mobileMenu.classList.contains('hidden')) {
+mobileMenu.classList.add('hidden');
+}
+// Update active nav link
+document.querySelectorAll('.nav-link').forEach(link => {
+link.classList.remove('active');
+});
+this.classList.add('active');
+}
+});
+});
+// Update active nav link on scroll
+window.addEventListener('scroll', function() {
+const scrollPosition = window.scrollY;
+document.querySelectorAll('section').forEach(section => {
+const sectionTop = section.offsetTop - 100;
+const sectionBottom = sectionTop + section.offsetHeight;
+const sectionId = section.getAttribute('id');
+if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+document.querySelectorAll('.nav-link').forEach(link => {
+link.classList.remove('active');
+if (link.getAttribute('href') === `#${sectionId}`) {
+link.classList.add('active');
+}
+});
+}
+});
+});
+});
+</script>
 </body>
 </html>
