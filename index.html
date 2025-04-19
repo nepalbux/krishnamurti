@@ -2,15 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background: #000;
             color: white;
-            overflow: hidden;
+            touch-action: manipulation;
+            overscroll-behavior: none;
         }
         
         #player-container {
@@ -19,7 +25,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: black;
+            background: #000;
             z-index: 10;
         }
         
@@ -34,21 +40,56 @@
             bottom: 20px;
             right: 20px;
             z-index: 100;
+            display: flex;
+            gap: 10px;
         }
         
-        #fullscreen-btn {
-            background: rgba(255, 0, 0, 0.7);
+        .control-btn {
+            background: rgba(255, 255, 255, 0.2);
             color: white;
             border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
+            width: 44px;
+            height: 44px;
+            border-radius: 22px;
             cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.2s;
         }
         
-        #fullscreen-btn:hover {
-            background: rgba(255, 0, 0, 0.9);
+        .control-btn:active {
+            transform: scale(0.95);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        #fullscreen-btn::after {
+            content: "⤢";
+        }
+        
+        .fullscreen-exit::after {
+            content: "⤡";
+        }
+        
+        /* Portrait mode adjustments */
+        @media (orientation: portrait) {
+            #player-container {
+                height: calc(100vh - env(safe-area-inset-bottom));
+            }
+        }
+        
+        /* Hide controls after inactivity */
+        #controls {
+            opacity: 1;
+            transition: opacity 0.5s;
+        }
+        
+        .hide-controls {
+            opacity: 0 !important;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -56,47 +97,113 @@
     <div id="player-container">
         <iframe 
             id="youtube-iframe"
-            src="https://www.youtube.com/embed/ejb38LhetUk?autoplay=1&mute=0&controls=0&rel=0&modestbranding=1" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            src="https://www.youtube.com/embed/ejb38LhetUk?autoplay=1&playsinline=1&enablejsapi=1&rel=0&modestbranding=1&controls=0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" 
             allowfullscreen>
         </iframe>
     </div>
     
     <div id="controls">
-        <button id="fullscreen-btn">Exit Fullscreen</button>
+        <button id="fullscreen-btn" class="control-btn" aria-label="Toggle fullscreen"></button>
     </div>
 
     <script>
+        // DOM Elements
         const playerContainer = document.getElementById('player-container');
         const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const controls = document.getElementById('controls');
         let isFullscreen = true;
+        let inactivityTimer;
         
-        // Toggle fullscreen
+        // Mobile-friendly fullscreen toggle
         function toggleFullscreen() {
             if (isFullscreen) {
-                playerContainer.style.width = '80%';
-                playerContainer.style.height = '80%';
-                playerContainer.style.left = '10%';
-                playerContainer.style.top = '10%';
-                fullscreenBtn.textContent = 'Enter Fullscreen';
+                playerContainer.style.borderRadius = '12px';
+                playerContainer.style.width = '90%';
+                playerContainer.style.height = '60vh';
+                playerContainer.style.left = '5%';
+                playerContainer.style.top = '20vh';
+                playerContainer.style.boxShadow = '0 0 20px rgba(0,0,0,0.5)';
+                fullscreenBtn.classList.add('fullscreen-exit');
             } else {
+                playerContainer.style.borderRadius = '0';
                 playerContainer.style.width = '100%';
                 playerContainer.style.height = '100%';
                 playerContainer.style.left = '0';
                 playerContainer.style.top = '0';
-                fullscreenBtn.textContent = 'Exit Fullscreen';
+                playerContainer.style.boxShadow = 'none';
+                fullscreenBtn.classList.remove('fullscreen-exit');
             }
             isFullscreen = !isFullscreen;
+            resetInactivityTimer();
         }
         
-        fullscreenBtn.addEventListener('click', toggleFullscreen);
+        // Handle mobile touch events
+        function handleTouchEvents() {
+            let startY;
+            
+            document.addEventListener('touchstart', (e) => {
+                startY = e.touches[0].clientY;
+                showControls();
+            }, { passive: true });
+            
+            document.addEventListener('touchmove', (e) => {
+                if (!isFullscreen && startY && e.touches[0].clientY < startY - 50) {
+                    // Swipe up to enter fullscreen
+                    if (!isFullscreen) toggleFullscreen();
+                    startY = null;
+                }
+            }, { passive: true });
+        }
         
-        // Keyboard shortcut (ESC exits fullscreen)
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && isFullscreen) {
-                toggleFullscreen();
+        // Show controls and reset hide timer
+        function showControls() {
+            controls.classList.remove('hide-controls');
+            resetInactivityTimer();
+        }
+        
+        // Hide controls after inactivity
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(() => {
+                if (isFullscreen) {
+                    controls.classList.add('hide-controls');
+                }
+            }, 3000);
+        }
+        
+        // Initialize
+        function init() {
+            // Event listeners
+            fullscreenBtn.addEventListener('click', toggleFullscreen);
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && isFullscreen) {
+                    toggleFullscreen();
+                }
+            });
+            
+            // Touch events for mobile
+            handleTouchEvents();
+            
+            // Click on video to show controls
+            playerContainer.addEventListener('click', showControls);
+            
+            // Handle mobile viewport height
+            function setVH() {
+                let vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
             }
-        });
+            
+            setVH();
+            window.addEventListener('resize', setVH);
+            window.addEventListener('orientationchange', setVH);
+            
+            // Start inactivity timer
+            resetInactivityTimer();
+        }
+        
+        // Start the player
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
