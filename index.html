@@ -1,210 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: #000;
-            color: white;
-            touch-action: manipulation;
-            overscroll-behavior: none;
-        }
-        
-        #player-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            z-index: 10;
-        }
-        
-        #youtube-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        #controls {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .control-btn {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: none;
-            width: 44px;
-            height: 44px;
-            border-radius: 22px;
-            cursor: pointer;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: all 0.2s;
-        }
-        
-        .control-btn:active {
-            transform: scale(0.95);
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        #fullscreen-btn::after {
-            content: "⤢";
-        }
-        
-        .fullscreen-exit::after {
-            content: "⤡";
-        }
-        
-        /* Portrait mode adjustments */
-        @media (orientation: portrait) {
-            #player-container {
-                height: calc(100vh - env(safe-area-inset-bottom));
-            }
-        }
-        
-        /* Hide controls after inactivity */
-        #controls {
-            opacity: 1;
-            transition: opacity 0.5s;
-        }
-        
-        .hide-controls {
-            opacity: 0 !important;
-            pointer-events: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fullscreen YouTube Video</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+    }
+
+    .video-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-    <div id="player-container">
-      <iframe src="https://www.youtube.com/embed/abcd1234xyz" 
-    title="YouTube video player" 
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    allowfullscreen>
-  </iframe>
-</div>
-
-    
-    <div id="controls">
-        <button id="fullscreen-btn" class="control-btn" aria-label="Toggle fullscreen"></button>
-    </div>
-
-    <script>
-        // DOM Elements
-        const playerContainer = document.getElementById('player-container');
-        const fullscreenBtn = document.getElementById('fullscreen-btn');
-        const controls = document.getElementById('controls');
-        let isFullscreen = true;
-        let inactivityTimer;
-        
-        // Mobile-friendly fullscreen toggle
-        function toggleFullscreen() {
-            if (isFullscreen) {
-                playerContainer.style.borderRadius = '12px';
-                playerContainer.style.width = '90%';
-                playerContainer.style.height = '60vh';
-                playerContainer.style.left = '5%';
-                playerContainer.style.top = '20vh';
-                playerContainer.style.boxShadow = '0 0 20px rgba(0,0,0,0.5)';
-                fullscreenBtn.classList.add('fullscreen-exit');
-            } else {
-                playerContainer.style.borderRadius = '0';
-                playerContainer.style.width = '100%';
-                playerContainer.style.height = '100%';
-                playerContainer.style.left = '0';
-                playerContainer.style.top = '0';
-                playerContainer.style.boxShadow = 'none';
-                fullscreenBtn.classList.remove('fullscreen-exit');
-            }
-            isFullscreen = !isFullscreen;
-            resetInactivityTimer();
-        }
-        
-        // Handle mobile touch events
-        function handleTouchEvents() {
-            let startY;
-            
-            document.addEventListener('touchstart', (e) => {
-                startY = e.touches[0].clientY;
-                showControls();
-            }, { passive: true });
-            
-            document.addEventListener('touchmove', (e) => {
-                if (!isFullscreen && startY && e.touches[0].clientY < startY - 50) {
-                    // Swipe up to enter fullscreen
-                    if (!isFullscreen) toggleFullscreen();
-                    startY = null;
-                }
-            }, { passive: true });
-        }
-        
-        // Show controls and reset hide timer
-        function showControls() {
-            controls.classList.remove('hide-controls');
-            resetInactivityTimer();
-        }
-        
-        // Hide controls after inactivity
-        function resetInactivityTimer() {
-            clearTimeout(inactivityTimer);
-            inactivityTimer = setTimeout(() => {
-                if (isFullscreen) {
-                    controls.classList.add('hide-controls');
-                }
-            }, 3000);
-        }
-        
-        // Initialize
-        function init() {
-            // Event listeners
-            fullscreenBtn.addEventListener('click', toggleFullscreen);
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && isFullscreen) {
-                    toggleFullscreen();
-                }
-            });
-            
-            // Touch events for mobile
-            handleTouchEvents();
-            
-            // Click on video to show controls
-            playerContainer.addEventListener('click', showControls);
-            
-            // Handle mobile viewport height
-            function setVH() {
-                let vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', `${vh}px`);
-            }
-            
-            setVH();
-            window.addEventListener('resize', setVH);
-            window.addEventListener('orientationchange', setVH);
-            
-            // Start inactivity timer
-            resetInactivityTimer();
-        }
-        
-        // Start the player
-        document.addEventListener('DOMContentLoaded', init);
-    </script>
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/i02mI9Yju-U?autoplay=1&mute=0&controls=1&rel=0&showinfo=0" 
+      title="YouTube video player"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
 </body>
 </html>
